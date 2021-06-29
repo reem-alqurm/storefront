@@ -5,7 +5,7 @@ import Header from './components/header/header.js';
 import Footer from './components/footer/footer.js';
 import store from './store/index.js'
 import Products from './components/storefront/products.js';
-import Storefront from './components/storefront/storefront.js';
+import SimpleCart from './components/simplecart/simplecart.js';
 
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
     <>
       <Provider store={store()}>
         <Header />
+        <SimpleCart />
         <main>
           <Products />
 
