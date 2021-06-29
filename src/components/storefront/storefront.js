@@ -1,13 +1,14 @@
+  
 import React from 'react';
 
+import Categories from './categories.js';
 import Products from './products.js';
 
 export default function Storefront() {
 
   return (
     <>
-      
-      {/* <CurrentCategory /> */}
+      <Categories />
       <Products />
     </>
   )
