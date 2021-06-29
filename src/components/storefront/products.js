@@ -7,37 +7,43 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
+// import Button from '@material-ui/core/Button';
+import CategoryViewer from './categories.js';
 
 import { connect } from 'react-redux';
 
-import { inactive, activate } from '../../store/categories.js';
+// import { inactive, activate } from '../../store/categories.js';
 import { getProducts } from '../../store/products.js';
+import { addToCart } from '../../store/cart.js';
 
 const ProductViewer = (props) => {
   return (
     <>
     {console.log(props)}
-    <h4>Browse Our Categories</h4>
-    <IconButton onClick={() => props.activate('Electronics')}>Electronics</IconButton>
-    <IconButton onClick={() => props.activate('Food')}>Food</IconButton>
+    <CategoryViewer />
     <Paper>
     <Typography variant="h2" component="h2">Products</Typography>
       <Grid container justify="center" spacing={5}>
-        {props.products.productsList.map(product => {
-          return (
-            <Grid item>
-              <Card>
-                <CardHeader title={product.name} />
-                <CardContent>
-                  <Typography variant="p" component="p">Description here...</Typography>
-                </CardContent>
-                <CardActions>
-                  <IconButton>ADD TO CART</IconButton>
-                  <IconButton>VIEW DETAILS</IconButton>
-                </CardActions>
-              </Card>
-            </Grid>
-          )
+        {props.products.productsList.map((product, idx) => {
+          if (product.category === props.activeCategory) {
+            return (
+              <Grid item key={idx}>
+                <Card>
+                  <CardHeader title={product.name} />
+                  <CardContent>
+                    <Typography component="p">Description here...</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton onClick={() => props.addToCart(product)}>ADD TO CART</IconButton>
+                    <IconButton>VIEW DETAILS</IconButton>
+                  </CardActions>
+                </Card>
+              </Grid>
+            )
+            
+          } else {
+            return null;
+          }
         })}
     </Grid>
     </Paper>
@@ -47,14 +53,17 @@ const ProductViewer = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products,
+    products: state.products, 
+    activeCategory: state.categories.activeCategory,
+    activeDescription: state.categories.activeDescription,
   }
 }
 
 const mapDispatchToProps = {
-  inactive,
-  activate,
+  // inactive,
+  // activate,
   getProducts,
+  addToCart,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductViewer);
