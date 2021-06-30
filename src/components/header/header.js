@@ -1,11 +1,11 @@
 import React from 'react';
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 // import { StylesProvider } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
 import {connect} from 'react-redux';
 
@@ -30,9 +30,10 @@ function Header(props) {
       <AppBar position="static">
         <Toolbar>
         <Typography variant="h6" className={classes.name}>
-          REEM STORE
+          <Button href="/">OUR STORE</Button>
         </Typography>
-        <Button color="inherit">Cart ({props.cart.cart.length})</Button>
+        {/* <Button href="/cart" color="inherit">Cart ({props.cart.cart.length})</Button> */}
+        <NavLink to="/cart">Cart({props.cart.cart.length})</NavLink>
         </Toolbar>
       </AppBar>
     </div>

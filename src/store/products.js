@@ -31,6 +31,9 @@ export default function productsReducer(state = initialState, action) {
     case "ACTIVATED":
       const products = getProducts(payload.category);
       return {...state, products: products}
+    // case "DETAIL":
+    //   const productDetail = state.filter(product => product._id === payload._id);
+    //   return productDetail
     default: 
     return state;
   }
@@ -51,3 +54,10 @@ export function getProducts(category){
   const response = products.filter(product => product.category === category);
   return response;
 }
+
+// export function getProductDetail(product) {
+//   return {
+//     type: "DETAIL",
+//     payload: product,
+//   }
+// }
