@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -13,7 +14,6 @@ import { getProducts } from '../../store/products.js';
 import { addToCart } from '../../store/cart.js';
 import { useEffect } from 'react';
 import { loadProducts } from '../../store/products.js';
-import { makeStyles } from '@material-ui/core/styles';
 
 // const useStyles = makeStyles({
 //   gridContainer: {
@@ -52,7 +52,7 @@ const ProductViewer = (props) => {
                   </CardContent>
                   <CardActions>
                     <IconButton onClick={() => props.addToCart(product)}>ADD TO CART</IconButton>
-                    <IconButton>VIEW DETAILS</IconButton>
+                    <IconButton component={Link} to={`/products/${product._id}`}>VIEW DETAILS</IconButton>
                   </CardActions>
                 </Card>
               </Grid>
